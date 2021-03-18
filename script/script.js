@@ -21,3 +21,21 @@ todos.forEach((todo) => {
   element.innerText = todo.title + " " + todo.dueDate;
   document.body.appendChild(element);
 });
+
+function addTodo() {
+  let todoList = document.getElementById("todo-list");
+  let title = todoList.nodeValue;
+
+  let dueDate = document.getElementById("due-date");
+  let date = dueDate.value;
+
+  let id = new Date().getTime();
+
+  todos.push({ title: title, dueDate: date, id: id });
+
+  todos.forEach((todo) => {
+    let element = document.createElement("div");
+    element.innerText = todo.title + " " + todo.dueDate;
+    document.body.appendChild(element);
+  });
+}
