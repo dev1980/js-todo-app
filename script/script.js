@@ -18,6 +18,20 @@ let todos = [
 
 // Model
 
+function createTodo(title, date) {
+  let id = " " + new Date().getTime();
+  todos.push({ title: title, dueDate: date, id: id });
+}
+
+function deleteTodo(idToDelete) {
+  todos = todos.filter(function (todo) {
+    if (todo.id == idToDelete) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+}
 render();
 
 // controller
@@ -29,9 +43,7 @@ function addTodo() {
   let dueDate = document.getElementById("due-date");
   let date = dueDate.value;
 
-  let id = " " + new Date().getTime();
-
-  todos.push({ title: title, dueDate: date, id: id });
+  createTodo(title, date);
 
   render();
 }
@@ -39,13 +51,7 @@ function addTodo() {
 function removeTodo(event) {
   let todoId = event.target;
   let idToDelete = todoId.id;
-  todos = todos.filter(function (todo) {
-    if (todo.id == idToDelete) {
-      return false;
-    } else {
-      return true;
-    }
-  });
+  deleteTodo(idToDelete);
   render();
 }
 // View
