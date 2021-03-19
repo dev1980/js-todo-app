@@ -1,26 +1,35 @@
-let todos = [
-  {
-    title: "Go for swimming",
-    dueDate: "12-03-2021",
-    id: "1",
-  },
-  {
-    title: "Shopping",
-    dueDate: "20-03-2021",
-    id: "2",
-  },
-  {
-    title: "Driving Class",
-    dueDate: "29-03-2021",
-    id: "3",
-  },
-];
+let todos;
+
+let savedTodos = JSON.parse(localStorage.getItem("todos"));
+
+if (Array.isArray(savedTodos) && savedTodos.length > 0) {
+  todos = savedTodos;
+} else {
+  todos = [
+    {
+      title: "Go for swimming",
+      dueDate: "12-03-2021",
+      id: "1",
+    },
+    {
+      title: "Shopping",
+      dueDate: "20-03-2021",
+      id: "2",
+    },
+    {
+      title: "Driving Class",
+      dueDate: "29-03-2021",
+      id: "3",
+    },
+  ];
+}
 
 // Model
 
 function createTodo(title, date) {
   let id = " " + new Date().getTime();
   todos.push({ title: title, dueDate: date, id: id });
+  saveTodo();
 }
 
 function deleteTodo(idToDelete) {
@@ -31,6 +40,7 @@ function deleteTodo(idToDelete) {
       return true;
     }
   });
+  saveTodo();
 }
 render();
 
@@ -53,6 +63,10 @@ function removeTodo(event) {
   let idToDelete = todoId.id;
   deleteTodo(idToDelete);
   render();
+}
+
+function saveTodo() {
+  localStorage.setItem("todos", JSON.stringify("todos"));
 }
 // View
 
