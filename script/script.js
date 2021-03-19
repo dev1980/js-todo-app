@@ -29,13 +29,25 @@ function addTodo() {
   let dueDate = document.getElementById("due-date");
   let date = dueDate.value;
 
-  let id = new Date().getTime();
+  let id = " " + new Date().getTime();
 
   todos.push({ title: title, dueDate: date, id: id });
 
   render();
 }
 
+function removeTodo(event) {
+  let todoId = event.target;
+  let idToDelete = todoId.id;
+  todos = todos.filter(function (todo) {
+    if (todo.id == idToDelete) {
+      return false;
+    } else {
+      return true;
+    }
+  });
+  render();
+}
 // View
 
 function render() {
@@ -48,6 +60,7 @@ function render() {
     deleteButton.innerText = "Delete";
     deleteButton.style = "margin-left: 12px; margin-top: 10px;";
     deleteButton.onclick = removeTodo;
+    deleteButton.id = todo.id;
     element.appendChild(deleteButton);
 
     let todoDisplay = document.getElementById("todo-display");
