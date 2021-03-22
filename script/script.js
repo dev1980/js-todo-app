@@ -6,29 +6,17 @@ if (Array.isArray(savedTodos) && savedTodos.length > 0) {
   todos = savedTodos;
 } else {
   todos = [
-    {
-      title: "Go for swimming",
-      dueDate: "12-03-2021",
-      id: "1",
-    },
-    {
-      title: "Shopping",
-      dueDate: "20-03-2021",
-      id: "2",
-    },
-    {
-      title: "Driving Class",
-      dueDate: "29-03-2021",
-      id: "3",
-    },
+    { title: "Buy Groceries", dueDate: "14-3-2021", id: "id1" },
+    { title: "Go for Driving", dueDate: "17-3-2021", id: "id2" },
+    { title: "Swimming", dueDate: "18-3-2021", id: "id3" },
   ];
 }
 
 // Model
 
-function createTodo(title, date) {
+function createTodo(title, dueDate) {
   let id = " " + new Date().getTime();
-  todos.push({ title: title, dueDate: date, id: id });
+  todos.push({ title: title, dueDate: dueDate, id: id });
   saveTodos();
 }
 
@@ -49,10 +37,10 @@ function addTodo() {
   let todoList = document.getElementById("todo-list");
   let title = todoList.nodeValue;
 
-  let dueDate = document.getElementById("due-date");
-  let date = dueDate.value;
+  let datePicker = document.getElementById("due-date");
+  let dueDate = datePicker.value;
 
-  createTodo(title, date);
+  createTodo(title, dueDate);
 
   render();
 }
