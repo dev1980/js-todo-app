@@ -29,7 +29,7 @@ if (Array.isArray(savedTodos) && savedTodos.length > 0) {
 function createTodo(title, date) {
   let id = " " + new Date().getTime();
   todos.push({ title: title, dueDate: date, id: id });
-  saveTodo();
+  saveTodos();
 }
 
 function deleteTodo(idToDelete) {
@@ -40,10 +40,9 @@ function deleteTodo(idToDelete) {
       return true;
     }
   });
-  saveTodo();
+  saveTodos();
 }
 render();
-
 // controller
 
 function addTodo() {
@@ -59,13 +58,13 @@ function addTodo() {
 }
 
 function removeTodo(event) {
-  let todoId = event.target;
-  let idToDelete = todoId.id;
+  let deleteButton = event.target;
+  let idToDelete = deleteButton.id;
   deleteTodo(idToDelete);
   render();
 }
 
-function saveTodo() {
+function saveTodos() {
   localStorage.setItem("todos", JSON.stringify("todos"));
 }
 // View
